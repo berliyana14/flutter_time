@@ -8,12 +8,137 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Timer',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         colorScheme: const ColorScheme.light(
           primary: Color.fromRGBO(72, 74, 126, 1),
         ),
+        scaffoldBackgroundColor: const Color(0xFFF5F7FB),
+
+        // Tambahan styling modern
+        appBarTheme: const AppBarTheme(
+          backgroundColor: Color.fromRGBO(72, 74, 126, 1),
+          centerTitle: true,
+          elevation: 0,
+          titleTextStyle: TextStyle(
+            fontSize: 22,
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+          ),
+        ),
+
+        cardTheme: CardThemeData(
+  elevation: 8,
+  shape: RoundedRectangleBorder(
+    borderRadius: BorderRadius.circular(20),
+  ),
+  shadowColor: Colors.black12,
+),
+
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ElevatedButton.styleFrom(
+            backgroundColor: const Color.fromRGBO(72, 74, 126, 1),
+            foregroundColor: Colors.white,
+            padding: const EdgeInsets.symmetric(
+              horizontal: 24,
+              vertical: 14,
+            ),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(14),
+            ),
+            textStyle: const TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ),
+
+        textTheme: const TextTheme(
+          bodyMedium: TextStyle(
+            fontSize: 16,
+            color: Colors.black87,
+          ),
+        ),
       ),
-      home: const TimerPage(),
+
+      // Splash screen sederhana
+      home: const SplashScreen(),
+    );
+  }
+}
+
+/// ===============================
+/// SPLASH SCREEN
+/// ===============================
+class SplashScreen extends StatefulWidget {
+  const SplashScreen({super.key});
+
+  @override
+  State<SplashScreen> createState() => _SplashScreenState();
+}
+
+class _SplashScreenState extends State<SplashScreen> {
+  @override
+  void initState() {
+    super.initState();
+
+    Future.delayed(const Duration(seconds: 2), () {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const TimerPage(),
+        ),
+      );
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Container(
+        width: double.infinity,
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            colors: [
+              Color.fromRGBO(72, 74, 126, 1),
+              Color(0xFF8F94FB),
+            ],
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+          ),
+        ),
+        child: const Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(
+              Icons.timer_rounded,
+              size: 100,
+              color: Colors.white,
+            ),
+            SizedBox(height: 20),
+            Text(
+              'Flutter Timer',
+              style: TextStyle(
+                fontSize: 34,
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+              ),
+            ),
+            SizedBox(height: 10),
+            Text(
+              'Modern Timer Application',
+              style: TextStyle(
+                fontSize: 18,
+                color: Colors.white70,
+              ),
+            ),
+            SizedBox(height: 40),
+            CircularProgressIndicator(
+              color: Colors.white,
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
