@@ -10,12 +10,13 @@ class App extends StatelessWidget {
       title: 'Flutter Timer',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
+        scaffoldBackgroundColor: const Color(0xFFF5F7FB),
+
         colorScheme: const ColorScheme.light(
           primary: Color.fromRGBO(72, 74, 126, 1),
         ),
-        scaffoldBackgroundColor: const Color(0xFFF5F7FB),
 
-        // Tambahan styling modern
+        /// APP BAR THEME
         appBarTheme: const AppBarTheme(
           backgroundColor: Color.fromRGBO(72, 74, 126, 1),
           centerTitle: true,
@@ -27,14 +28,16 @@ class App extends StatelessWidget {
           ),
         ),
 
+        /// CARD THEME
         cardTheme: CardThemeData(
-  elevation: 8,
-  shape: RoundedRectangleBorder(
-    borderRadius: BorderRadius.circular(20),
-  ),
-  shadowColor: Colors.black12,
-),
+          elevation: 8,
+          shadowColor: Colors.black12,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(20),
+          ),
+        ),
 
+        /// BUTTON THEME
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(
             backgroundColor: const Color.fromRGBO(72, 74, 126, 1),
@@ -53,6 +56,7 @@ class App extends StatelessWidget {
           ),
         ),
 
+        /// TEXT THEME
         textTheme: const TextTheme(
           bodyMedium: TextStyle(
             fontSize: 16,
@@ -61,15 +65,15 @@ class App extends StatelessWidget {
         ),
       ),
 
-      // Splash screen sederhana
+      /// HALAMAN AWAL
       home: const SplashScreen(),
     );
   }
 }
 
-/// ===============================
+/// =====================================================
 /// SPLASH SCREEN
-/// ===============================
+/// =====================================================
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
 
@@ -97,6 +101,7 @@ class _SplashScreenState extends State<SplashScreen> {
     return Scaffold(
       body: Container(
         width: double.infinity,
+
         decoration: const BoxDecoration(
           gradient: LinearGradient(
             colors: [
@@ -107,6 +112,7 @@ class _SplashScreenState extends State<SplashScreen> {
             end: Alignment.bottomRight,
           ),
         ),
+
         child: const Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -115,7 +121,9 @@ class _SplashScreenState extends State<SplashScreen> {
               size: 100,
               color: Colors.white,
             ),
+
             SizedBox(height: 20),
+
             Text(
               'Flutter Timer',
               style: TextStyle(
@@ -124,7 +132,9 @@ class _SplashScreenState extends State<SplashScreen> {
                 color: Colors.white,
               ),
             ),
+
             SizedBox(height: 10),
+
             Text(
               'Modern Timer Application',
               style: TextStyle(
@@ -132,7 +142,9 @@ class _SplashScreenState extends State<SplashScreen> {
                 color: Colors.white70,
               ),
             ),
+
             SizedBox(height: 40),
+
             CircularProgressIndicator(
               color: Colors.white,
             ),
