@@ -96,17 +96,20 @@ class _TimerPageState extends State<TimerPage> {
     return Scaffold(
       body: Container(
         width: double.infinity,
+
+        /// SOFT PINK BACKGROUND
         decoration: const BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
             colors: [
-              Color(0xff0f172a),
-              Color(0xff1e3a8a),
-              Color(0xff2563eb),
+              Color(0xfffff1f5),
+              Color(0xffffd6e7),
+              Color(0xffffb7d5),
             ],
           ),
         ),
+
         child: SafeArea(
           child: Column(
             children: [
@@ -116,8 +119,8 @@ class _TimerPageState extends State<TimerPage> {
               const Text(
                 'Focus Timer',
                 style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 36,
+                  color: Color(0xff9d174d),
+                  fontSize: 38,
                   fontWeight: FontWeight.bold,
                   letterSpacing: 1,
                 ),
@@ -131,22 +134,23 @@ class _TimerPageState extends State<TimerPage> {
                     : duration == 0
                         ? 'Completed'
                         : 'Ready to Focus',
-                style: TextStyle(
-                  color: Colors.white70,
-                  fontSize: 16,
+                style: const TextStyle(
+                  color: Color(0xffbe185d),
+                  fontSize: 17,
+                  fontWeight: FontWeight.w500,
                 ),
               ),
 
               const Spacer(),
 
-              /// MODERN TIMER
+              /// TIMER
               SizedBox(
                 width: 320,
                 height: 320,
                 child: Stack(
                   alignment: Alignment.center,
                   children: [
-                    /// OUTER SHADOW
+                    /// SHADOW
                     Container(
                       width: 320,
                       height: 320,
@@ -154,7 +158,7 @@ class _TimerPageState extends State<TimerPage> {
                         shape: BoxShape.circle,
                         boxShadow: [
                           BoxShadow(
-                            color: Colors.black.withOpacity(0.3),
+                            color: Colors.pink.withOpacity(0.25),
                             blurRadius: 40,
                             spreadRadius: 5,
                           ),
@@ -168,11 +172,11 @@ class _TimerPageState extends State<TimerPage> {
                       height: 300,
                       child: CircularProgressIndicator(
                         value: progress,
-                        strokeWidth: 12,
-                        backgroundColor: Colors.white24,
+                        strokeWidth: 13,
+                        backgroundColor: Colors.white70,
                         valueColor:
                             const AlwaysStoppedAnimation<Color>(
-                          Colors.white,
+                          Color(0xffec4899),
                         ),
                       ),
                     ),
@@ -183,21 +187,29 @@ class _TimerPageState extends State<TimerPage> {
                       height: 250,
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
-                        color: Colors.white.withOpacity(0.08),
+                        gradient: const LinearGradient(
+                          begin: Alignment.topLeft,
+                          end: Alignment.bottomRight,
+                          colors: [
+                            Color(0xfffff1f2),
+                            Color(0xffffdce8),
+                          ],
+                        ),
                         border: Border.all(
-                          color: Colors.white24,
+                          color: Colors.white,
+                          width: 2,
                         ),
                       ),
                     ),
 
-                    /// TEXT
+                    /// TIMER TEXT
                     Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
                           formatTime(duration),
                           style: const TextStyle(
-                            color: Colors.white,
+                            color: Color(0xff9d174d),
                             fontSize: 72,
                             fontWeight: FontWeight.bold,
                           ),
@@ -212,9 +224,10 @@ class _TimerPageState extends State<TimerPage> {
                                   ? 'Done'
                                   : 'Ready',
                           style: const TextStyle(
-                            color: Colors.white70,
+                            color: Color(0xffbe185d),
                             fontSize: 22,
                             letterSpacing: 1,
+                            fontWeight: FontWeight.w500,
                           ),
                         ),
                       ],
@@ -231,13 +244,13 @@ class _TimerPageState extends State<TimerPage> {
                 children: [
                   buildSmallButton(
                     icon: Icons.replay,
-                    color: Colors.orange,
+                    color: const Color(0xffec4899),
                     onTap: resetTimer,
                   ),
 
                   const SizedBox(width: 25),
 
-                  /// PLAY / PAUSE BUTTON
+                  /// PLAY / PAUSE
                   GestureDetector(
                     onTap: () {
                       if (isRunning) {
@@ -253,20 +266,18 @@ class _TimerPageState extends State<TimerPage> {
                         gradient: LinearGradient(
                           colors: isRunning
                               ? [
-                                  Colors.redAccent,
-                                  Colors.red,
+                                  const Color(0xfffb7185),
+                                  const Color(0xfff43f5e),
                                 ]
                               : [
-                                  const Color(0xff22c55e),
-                                  const Color(0xff16a34a),
+                                  const Color(0xfff9a8d4),
+                                  const Color(0xffec4899),
                                 ],
                         ),
                         borderRadius: BorderRadius.circular(30),
                         boxShadow: [
                           BoxShadow(
-                            color: isRunning
-                                ? Colors.red.withOpacity(0.4)
-                                : Colors.green.withOpacity(0.4),
+                            color: Colors.pink.withOpacity(0.35),
                             blurRadius: 20,
                             offset: const Offset(0, 10),
                           ),
@@ -286,7 +297,7 @@ class _TimerPageState extends State<TimerPage> {
 
                   buildSmallButton(
                     icon: Icons.stop,
-                    color: Colors.white,
+                    color: const Color(0xffec4899),
                     onTap: pauseTimer,
                   ),
                 ],
@@ -311,11 +322,19 @@ class _TimerPageState extends State<TimerPage> {
         width: 70,
         height: 70,
         decoration: BoxDecoration(
-          color: Colors.white.withOpacity(0.15),
+          color: Colors.white.withOpacity(0.35),
           borderRadius: BorderRadius.circular(22),
           border: Border.all(
-            color: Colors.white24,
+            color: Colors.white,
+            width: 1.5,
           ),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.pink.withOpacity(0.12),
+              blurRadius: 15,
+              offset: const Offset(0, 8),
+            ),
+          ],
         ),
         child: Icon(
           icon,
